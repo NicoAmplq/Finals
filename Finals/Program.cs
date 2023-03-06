@@ -106,7 +106,12 @@ namespace Finals
 
             Console.WriteLine("Enter the product code to add: ");
             string product = Console.ReadLine();
-
+                if (!itemsProduct.Contains(product))
+                {
+                    Console.WriteLine("Invalid product code. Please enter a valid product code from the list.");
+                    AddToCart();
+                    return;
+                }
             Console.WriteLine("Enter the quantity: ");
             int quantity = int.Parse(Console.ReadLine());
 
