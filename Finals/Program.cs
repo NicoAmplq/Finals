@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Data;
@@ -93,11 +93,11 @@ namespace Finals
             Dictionary<string, double> productPrices = new Dictionary<string, double>();
             for (int i = 0; i < itemsProduct.Count; i++)
             {
-                string[] parts = itemsPrice[i].Split(' ');
-                string productName = parts[0];
-                productPrices.Add(productName, (double)double.Parse(parts[1]));
+                string[] total = itemsPrice[i].Split(' ');
+                string productName = total[0];
+                productPrices.Add(productName, (double)double.Parse(total[1]));
             }
-                Console.WriteLine("Available Foods and Drinks:");
+            Console.WriteLine("Available Foods and Drinks:");
             foreach (string choice in itemsProduct)
             {
                 Console.WriteLine("- " + choice + " - " + productPrices[choice.Split(' ')[0]]);
@@ -106,7 +106,13 @@ namespace Finals
 
             Console.WriteLine("Enter the product code to add: ");
             string product = Console.ReadLine();
-            
+
+            if (!productPrices.ContainsKey(product.Split(' ')[0]))
+            {
+                Console.WriteLine("Invalid product code, please try again.");
+                return;
+            }
+
             Console.WriteLine("Enter the quantity: ");
             int quantity = int.Parse(Console.ReadLine());
 
